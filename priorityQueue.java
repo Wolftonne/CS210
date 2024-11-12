@@ -35,7 +35,7 @@ public class priorityQueue
         nItems++;
     }
 
-    public boolean isEmpty() //method to check if empty
+    public boolean isEmpty() //returns true if empty
     {
         return nItems == 0;
     }
@@ -51,6 +51,40 @@ public class priorityQueue
         {
             throw new RuntimeException("Queue is empty");
         }
+     }
 
+    public boolean isFull() //returns true if full
+    {
+        return nItems == maxSize;
+    }
+
+    public long peek()
+    {
+        if(isEmpty())
+        {
+            throw new RuntimeException("Queue is empty");
+        }
+        return queArray[0];
+    }
+
+    public int size()
+    {
+        return nItems;
+    }
+
+    public boolean compareTo(priorityQueue otherQueue)
+    {
+        if(this.size() != otherQueue.size())
+        {
+            return false;
+        }
+        for(int i = 0; i < this.size(); i++)
+        {
+            if(this.queArray[i] != otherQueue.queArray[i])
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
