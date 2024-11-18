@@ -35,56 +35,33 @@ public class priorityQueue
         nItems++;
     }
 
-    public boolean isEmpty() //returns true if empty
+    public boolean isEmpty() //method to check if empty
     {
         return nItems == 0;
     }
 
     public long remove() //method to remove item
     {
-        if(!isEmpty())
-        {
-            long temp = queArray[--nItems];
-            return temp;
-        }
-        else
-        {
-            throw new RuntimeException("Queue is empty");
-        }
-     }
-
-    public boolean isFull() //returns true if full
-    {
-        return nItems == maxSize;
+        
+        long temp = queArray[--nItems];
+        return temp;
+       
     }
 
-    public long peek()
+    public long peek() //method to view top item without removing it
     {
-        if(isEmpty())
-        {
-            throw new RuntimeException("Queue is empty");
-        }
-        return queArray[0];
+        long temp =  queArray[nItems-1];
+        return temp;
     }
 
-    public int size()
+    public boolean isFull() // return true if queue is full
     {
-        return nItems;
+        return(queArray[nItems-1] == maxSize-1);
     }
 
-    public boolean compareTo(priorityQueue otherQueue)
+    public long size() // returns current size (number of items)
     {
-        if(this.size() != otherQueue.size())
-        {
-            return false;
-        }
-        for(int i = 0; i < this.size(); i++)
-        {
-            if(this.queArray[i] != otherQueue.queArray[i])
-            {
-                return false;
-            }
-        }
-        return true;
+        long temp = nItems;
+        return temp;
     }
 }
