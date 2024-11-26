@@ -7,53 +7,91 @@ public class LinkedListTest
         
         //Create linked list and add links (people)
         LinkedList linkedList = new LinkedList();
-        linkedList.addLink("James", 26, "CSSE", 2);
+        linkedList.addLink("Bunny", 26, "CSSE", 2);
         linkedList.addLink("Larry", 18, "ARTS", 1);
         linkedList.addLink("Steve", 32, "Computational Thinking", 4);
 
 
-        /* 
-        //Print out the entire list
-        System.out.println("List of people: ");
-        linkedList.printList();
-
-        //Example 1: Print person with specific name "bunny"
-        System.out.println("\nSearching for person with name = Bunny:");
-        linkedList.printByAttribute("name", "Bunny");
-
-        //Example 2: Remome person with age 26
-        System.out.println("\nRemoving person with age =  26:");
-        linkedList.removeByAttribute("age", "26");
-
-        //Print list after removal
-        System.out.println("\nList after removal:");
-        linkedList.printList();
-
-        //Example 3: Try to print person with degree "ARTS"
-        System.out.println("\nSearching for person with degree = ARTS: ");
-        linkedList.printByAttribute("degree", "ARTS");
-        */
-
-
-
-
         Scanner scanner = new Scanner(System.in);
         String attrib = "";
-        String person = "";
-        while(!attrib.equals("print"))
-        {
-            System.out.println("Enter name/age/degree/yearOfStudy");
-            attrib = scanner.next();
-            System.out.println("Enter which person");
-            person = scanner.next();
+        String value = "";
+        String action = "";        
+        
+        System.out.println("Enter name/age/degree/yearOfStudy/print");
+        attrib = scanner.next();
 
-            if(attrib.equals("name"))
+        if(attrib.equals("name"))
+        {
+            System.out.println("Enter which person");
+            value = scanner.next();           
+            System.out.println("print/remove");
+            action = scanner.next();
+            if(action.equals("print"))
             {
-                if(person.equals("Bunny") || person.equals("Larry") || person.equals("Steve"))
-                {
-                    linkedList.printByAttribute(attrib, person);
-                }                
+                linkedList.printByAttribute(attrib, value);
+            } 
+            else if(action.equals("remove"))
+            {
+                linkedList.removeByAttribute(attrib, value);
+                System.out.println("New List: ");
+                linkedList.printList();
+            }                          
+        }
+        else if(attrib.equals("age"))
+        {
+            System.out.println("Enter what age");
+            value = scanner.next();
+            System.out.println("print/remove");
+            action = scanner.next();
+            if(action.equals("print"))
+            {
+                linkedList.printByAttribute(attrib, value);
             }
+            else if(action.equals("remove"))
+            {
+                linkedList.removeByAttribute(attrib, value);
+                System.out.println("New List: ");
+                linkedList.printList();
+            }    
+        }
+        else if(attrib.equals("degree"))
+        {
+            System.out.println("Enter what degree");
+            value = scanner.next();
+            System.out.println("print/remove");
+            action = scanner.next();
+            if(action.equals("print"))
+            {
+                linkedList.printByAttribute(attrib, value);
+            }
+            else if(action.equals("remove"))
+            {
+                linkedList.removeByAttribute(attrib, value);
+                System.out.println("New List: ");
+                linkedList.printList();
+            }    
+        }
+        else if(attrib.equals("yearOfStudy"))
+        {
+            System.out.println("Enter what year of study");
+            value = scanner.next();
+            System.out.println("print/remove");
+            action = scanner.next();
+            if(action.equals("print"))
+            {
+                linkedList.printByAttribute(attrib, value);
+            }
+            else if(action.equals("remove"))
+            {
+                linkedList.removeByAttribute(attrib, value);
+                System.out.println("New List: ");
+                linkedList.printList();
+            }    
+        }       
+        else if(attrib.equals("print"))
+        {
+            linkedList.printList();
         } 
+        scanner.close();
     }
 }
