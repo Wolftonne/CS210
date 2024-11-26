@@ -1,65 +1,85 @@
 class LinkedList
 {
-    private Link first;
+    Link head; //head of the list
 
     public LinkedList()
     {
-        first = null;
+        head = null;
     }
 
-    public boolean isEmpty()
+    public void addLink(String name, int age, String degree, int yearOfStudy)
     {
-        return (first == null);
+        Link newLink = new Link(name, age, degree, yearOfStudy);
+        newLink.next = head;
+        head = newLink;
     }
 
-    public void insertHead(int number)
+    public void printList()
     {
-        Link newLink = new Link(number);
-        newLink.next = first;
-        first = newLink;
+        Link current = head;
+        if(current == null)
+        {
+            System.out.println("List is empty");
+            return;
+        }
+
+        while(current!= null)
+        {
+            System.out.println(current);
+            current=current.next;
+        }
     }
 
-    public Link deleteHead()
+    public void removeByAttribute(String attribute, String value)
     {
-        Link temp = first;
-        first = first.next;
-        return temp;
+        Link current = head;
+        Link previous = null;
+
+        while(current != null)
+        {
+            if(attribute.equals("name") && current.name.equals(value) ||
+               attribute.equals("degree") && current.degree.equals(value) ||
+               attribute.equals("age") && Integer.toString(current.age).equals(value) ||
+               attribute.equals("yearOfStudy") && Integer.toString(current.yearOfStudy).equals(value))
+               {
+                if(previous==null)
+                {
+                    head = current.next;
+                }
+                else
+                {
+                    previous.next = current.next;
+                }
+                System.out.println("Removed: " + current);
+                return;
+               }
+               previous=current;
+               current=current.next;
+        }
+        System.out.println("Item with " + attribute + " = " + value + " not found");
     }
 
-    public void display()
+
+    public void printByAttribute(String attribute, String value)
     {
-        Link current = first;
+        Link current = head;
+        boolean found = false;
+
         while(current!=null)
         {
-            current.displayLink();
-            current = current.next;            
+            if(attribute.equals("name") && current.name.equals(value) ||
+               attribute.equals("degree") && current.degree.equals(value) ||
+               attribute.equals("age") && Integer.toString(current.age).equals(value) ||
+               Integer.toString(current.yearOfStudy).equals(value))
+               {
+                System.out.println(current);
+                found = true;
+               }
+               current = current.next;
         }
-    }
-
-    public Link delete(int key)
-    {
-        Link current = first;
-        Link previous = first;
-        while(current.data!=key)
+        if(!found)
         {
-            if(current.next==null)
-            {
-                return null;
-            }
-            else
-            {
-                previous = current;
-                current = current.next;
-            }
+            System.out.println("No person found with " + attribute + " = " + value + ".");
         }
-        if(current==first)
-        {
-            first = first.next;
-        }
-        else
-        {
-            previous.next = current.next;
-        }
-        return current;
     }
 }
