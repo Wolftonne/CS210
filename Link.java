@@ -20,6 +20,3 @@ public class Link
         return name + ", " + age + ", " + degree + ", " + yearOfStudy;
     }
 }
-
-
-
