@@ -10,6 +10,7 @@ public class LinkedListTest
         linkedList.addLink("Bunny", 26, "CSSE", 2);
         linkedList.addLink("Larry", 18, "ARTS", 1);
         linkedList.addLink("Steve", 32, "Computational Thinking", 4);
+        
 
 
         Scanner scanner = new Scanner(System.in);
@@ -17,7 +18,7 @@ public class LinkedListTest
         String value = "";
         String action = "";        
         
-        System.out.println("Enter name/age/degree/yearOfStudy/print");
+        System.out.println("Enter name/age/degree/yearOfStudy/print/NewLink");
         attrib = scanner.next();
 
         if(attrib.equals("name"))
@@ -54,6 +55,11 @@ public class LinkedListTest
                 linkedList.printList();
             }    
         }
+        else if(attrib.equals("NewLink"))
+        {
+            linkedList.addLink(scanner.next(), scanner.nextInt(), scanner.next(), scanner.nextInt());
+            linkedList.printList();
+        }
         else if(attrib.equals("degree"))
         {
             System.out.println("Enter what degree");
@@ -71,6 +77,7 @@ public class LinkedListTest
                 linkedList.printList();
             }    
         }
+
         else if(attrib.equals("yearOfStudy"))
         {
             System.out.println("Enter what year of study");
@@ -92,6 +99,7 @@ public class LinkedListTest
         {
             linkedList.printList();
         } 
+
         scanner.close();
     }
 }
