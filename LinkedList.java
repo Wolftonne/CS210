@@ -7,12 +7,30 @@ class LinkedList
         head = null;
     }
 
+    //add link, ordering alpghabetically by 'name'
     public void addLink(String name, int age, String degree, int yearOfStudy)
     {
         Link newLink = new Link(name, age, degree, yearOfStudy);
-        newLink.next = head;
-        head = newLink;
+        //if empty, add to first pos of the link
+        if(head == null || head.name.compareTo(name) > 0)
+        {
+            newLink.next = head;
+            head = newLink;
+            return;
+        }
+
+        Link current = head;
+        //compares the 'name' of each link. if 'current.next.name.compareTo(name) < 0' is  true, it means the current links 'name' is lexicographically smaller than the new links name.
+        while(current.next!= null && current.next.name.compareTo(name) < 0)
+        {
+            current = current.next;
+        }
+
+        newLink.next = current.next;
+        current.next = newLink;
     }
+
+
 
     public void printList()
     {
@@ -24,7 +42,7 @@ class LinkedList
         }
 
         while(current!= null)
-        {
+        {            
             System.out.println(current);
             current=current.next;
         }
