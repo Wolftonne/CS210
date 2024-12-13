@@ -1,6 +1,7 @@
 import java.util.Scanner;
+import java.util.Random;
 
-public class Lab9 {
+public class lab9 {
     public static void merge(int[] workSpace, int first, int second, int upperBound) {
         int n1 = second - first + 1; // sizes of the two arrays
         int n2 = upperBound - second;
@@ -54,24 +55,40 @@ public class Lab9 {
             //find middle
             int mid = first + (second - first) / 2;
 
-            //sort first and second halves
-            sort(workSpace, first, mid);
-            sort(workSpace, mid + 1, second);
-            //merge the sorted halves
-            merge(workSpace, first, mid, second);
+            //sort first and second halves using insertion sort if first + second < 9
+            if((first + second) < 9) {
+                insertionSort(workSpace);
+            } else {
+                sort(workSpace, first, mid);
+                sort(workSpace, mid + 1, second);
+            }
+        }
+    }
+
+    public static void insertionSort(int arr[]) {
+        int n = arr.length;
+        for(int i = 1; i < n; i++) {
+            int key = arr[i];
+            int j = i - 1;
+            while(j>=0&&arr[j]>key) {
+                arr[j+1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = key;
         }
     }
 
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int size = scanner.nextInt();
-        int arr[] = new int[size];
-        
-        for(int i = 0; i < size; i++) {
-            arr[i] = scanner.nextInt();
-        }
+        Random rand = new Random();        
+        int size = 500;        
+        int arr[] = new int[size]; //create array of size 500
 
+        //populate array with 500 random numbers
+        for(int i = 0; i < size; i++) {
+            arr[i] = rand.nextInt(200);
+        }        
         sort(arr, 0, size-1);
         System.out.print("[");
         for(int i = 0; i < size; i++) {
@@ -81,5 +98,6 @@ public class Lab9 {
             }
         }  
         System.out.print("]");
+
     }
 }
